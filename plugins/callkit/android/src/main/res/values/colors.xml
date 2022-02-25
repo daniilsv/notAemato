@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="decline">#FF5F5F</color>
+    <color name="accept">#6ED88B</color>
+    <color name="accent">#FFFFFF</color>
+    <color name="bg">#373C46</color>
+</resources>

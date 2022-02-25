@@ -1,0 +1,13 @@
+{
+    "dart.lineLength": 90,
+    "editor.rulers": [
+        90,
+    ],
+    "dart.flutterRunAdditionalArgs": [
+        // "--no-sound-null-safety"
+    ],
+    "dart.vmAdditionalArgs": [
+        // "--no-sound-null-safety"
+    ],
+    "dart.flutterSdkPath": "D:\\SDK\\flutter-stable"
+}

@@ -1,0 +1,34 @@
+stages:
+  - build
+  - deploy
+
+before_script:
+  - "VERSION=$(sed -n 's/^version: //p' pubspec.yaml)"
+
+build:
+  stage: build
+  tags:
+    - flutter
+  only:
+    - build
+    - tags
+  script:
+    # - flutter channel stable
+    # - flutter upgrade
+    # - flutter pub get
+    - flutter build apk --no-sound-null-safety
+    - "cp ./build/app/outputs/apk/release/app-release.apk ./$VERSION.apk"
+  artifacts:
+    name: "$CI_COMMIT_REF_NAME"
+    expire_in: 1 week
+    paths:
+      - "*.apk"
+
+deploy_production:
+  image: node:latest
+  stage: deploy
+  only:
+    - tags
+  script:
+    - npm install -g firebase-tools
+    - "firebase appdistribution:distribute $VERSION.apk --app \"$APP_ID\" --release-notes \"$CI_COMMIT_MESSAGE\" --groups \"testers\" --token \"$FB_TOKEN\""
